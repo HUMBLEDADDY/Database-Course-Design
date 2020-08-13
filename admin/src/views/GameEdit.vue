@@ -11,6 +11,9 @@
         <el-form-item label="简介">
             <el-input type="textarea" rows="5" v-model="model.content"></el-input>
         </el-form-item>
+        <el-form-item label="出版商">
+            <el-input v-model="model.publisher"></el-input>
+        </el-form-item>
         <el-form-item label="评分">
             <el-rate style="top:10px;position:relative"
                 v-model="model.score"
@@ -46,7 +49,8 @@ export default {
         return {
             max:7,
             texts:['差评如潮','特别差评','多半差评','褒贬不一','多半好评','特别好评','好评如潮'],
-            model:{},
+            model:{
+            },
         }
     },
     methods:{
@@ -60,6 +64,7 @@ export default {
             else{
                 await this.$http.post('rest/games',this.model)
             }
+            this.$router.push('/games/list')
             this.$message({
                type: 'success',
                message: '保存成功'

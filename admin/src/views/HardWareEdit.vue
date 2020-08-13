@@ -18,6 +18,7 @@
             <el-upload
             class="avatar-uploader"
             :action="$http.defaults.baseURL + '/upload'"
+            :headers="getAuthHeaders()"
             :show-file-list="false"
             :on-success="afterUpload">
             <img v-if="model.icon" :src="model.icon" class="avatar">
@@ -53,6 +54,7 @@ export default {
             else{
                 await this.$http.post('rest/hardware',this.model)
             }
+            this.$router.push('/hardware/list')
             this.$message({
                type: 'success',
                message: '保存成功'

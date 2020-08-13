@@ -1,22 +1,17 @@
 <template>
   <div class="about">
-    <h1>硬件列表</h1>
-    <el-table :data="hardware">
+    <h1>管理员列表</h1>
+    <el-table :data="items">
         <el-table-column prop="_id" label="ID" width="220">
         </el-table-column>
-        <el-table-column prop="parent.name" label="图片">
-            <template slot-scope="scope">
-                <img :src="scope.row.icon" style="height:3rem">
-            </template>
-        </el-table-column>
-        <el-table-column prop="name" label="硬件名称">
+        <el-table-column prop="username" label="用户名">
         </el-table-column>
         <el-table-column
         fixed="right"
         label="操作"
         width="180">
         <template slot-scope="scope" >
-            <el-button type="primary" @click="$router.push(`/hardware/edit/${scope.row._id}`)" size="small">查看</el-button>
+            <el-button type="primary" @click="$router.push(`/admin_users/edit/${scope.row._id}`)" size="small">查看</el-button>
             <el-button type="primary" @click="remove(scope.row)" size="small">删除</el-button>
         </template>
     </el-table-column>
@@ -28,21 +23,21 @@
 export default {
     data(){
         return{
-            hardware:[]
+            items:[]
         }
     },
     methods:{
         async fetch(){
-            const res = await this.$http.get('rest/hardware')
-            this.hardware = res.data
+            const res = await this.$http.get('rest/admin_users')
+            this.items = res.data
         },
         async remove(row){
-            this.$confirm(`是否要删除${row.name}?`, '提示', {
+            this.$confirm(`是否要删除${row.username}?`, '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
             }).then(async () => {
-                 await this.$http.delete(`rest/hardware/${row._id}`)
+                 await this.$http.delete(`rest/admin_users/${row._id}`)
                 this.$message({
                     type: 'success',
                     message: '删除成功!'

@@ -20,7 +20,7 @@
         label="操作"
         width="180">
         <template slot-scope="scope" >
-            <el-button type="primary" @click="$router.push(`/games/edit/${scope.row._id}`)" size="small">编辑</el-button>
+            <el-button type="primary" @click="$router.push(`/games/edit/${scope.row._id}`)" size="small">查看</el-button>
             <el-button type="primary" @click="remove(scope.row)" size="small">删除</el-button>
         </template>
     </el-table-column>
@@ -32,13 +32,39 @@
 export default {
     data(){
         return{
-            games:[]
+            games:[],
+            texts:['差评如潮','特别差评','多半差评','褒贬不一','多半好评','特别好评','好评如潮']
         }
     },
     methods:{
         async fetch(){
             const res = await this.$http.get('rest/games')
             this.games = res.data
+            for(let i=0;i<this.games.length;i++){
+                switch(this.games[i].score){
+                    case "1":
+                        this.games[i].score = "差评如潮"
+                        break;
+                    case "2":
+                        this.games[i].score = "特别差评"
+                        break;
+                    case "3":
+                        this.games[i].score = "多半差评"
+                        break;
+                    case "4":
+                        this.games[i].score = "褒贬不一"
+                        break;
+                    case "5":
+                        this.games[i].score = "多半好评"
+                        break;
+                    case "6":
+                        this.games[i].score = "特别好评"
+                        break;
+                    case "7":
+                        this.games[i].score = "好评如潮"
+                        break;                        
+                }
+            }
         },
         async remove(row){
             this.$confirm(`是否要删除${row.name}?`, '提示', {

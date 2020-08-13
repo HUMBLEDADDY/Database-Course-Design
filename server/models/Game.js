@@ -2,9 +2,8 @@ const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
     name:String,
-    parent:{type:mongoose.SchemaTypes.ObjectId,ref:'Game'},
     icon:String,
-    scores:Number,
+    score:String,
     publisher:String,
     content:String,
     price:Number
