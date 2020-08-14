@@ -3,7 +3,7 @@
     <h1>{{id ? '编辑':'新建'}}硬件</h1>
     <el-form label-width="120px" @submit.native.prevent="save">
         <el-form-item label="类型">
-            <el-select v-model="model.categories">
+            <el-select v-model="model.category">
                 <el-option
                 v-for="item in categories"
                 :key="item._id"

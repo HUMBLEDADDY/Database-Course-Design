@@ -1,0 +1,23 @@
+{
+  "id": "2006369",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6268303",
+      "name": "返回",
+      "font_class": "fanhui",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "372210",
+      "name": "cc-menu-circle",
+      "font_class": "cc-menu-circle",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    }
+  ]
+}

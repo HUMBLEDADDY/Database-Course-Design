@@ -4,6 +4,7 @@ module.exports = app =>{
     const assert = require('http-assert')
     const express = require('express')
     const jwt = require('jsonwebtoken')
+    const AdminUser = require('../../models/AdminUser')
     const router = express.Router({
         mergeParams:true
     })
@@ -29,6 +30,9 @@ module.exports = app =>{
         if(req.Model.modelName === 'Article'){
             querryOptions.populate = 'category'
         }
+        if(req.Model.modelName === 'HardWare'){
+            querryOptions.populate = 'category'
+        }
         const games = await req.Model.find().setOptions(querryOptions)
         res.send(games)
     })
@@ -39,13 +43,9 @@ module.exports = app =>{
 
     const authMiddleware = require('../../middleware/auth')
 
-    const resourceMiddleware = async(req,res,next)=>{
-        const modelName = require('inflection').classify(req.params.resource)
-        req.Model = require(`../../models/${modelName}`)
-        next()
-    }
+    const resourceMiddleware = require('../../middleware/resource')
 
-    app.use('/admin/api/rest/:resource',authMiddleware(),resourceMiddleware,router)
+    app.use('/admin/api/rest/:resource',authMiddleware(),resourceMiddleware(),router)
 
     const multer = require('multer')
     const upload = multer({dest: __dirname + '/../../uploads'})
@@ -58,7 +58,7 @@ module.exports = app =>{
     app.post('/admin/api/login', async(req,res)=>{
 
         const{username,password} = req.body
-        const AdminUser = require('../../models/AdminUser')
+
         const user = await AdminUser.findOne({ username }).select('+password')
         assert(user, 422, '用户不存在')
         const isValid = require('bcryptjs').compareSync(password, user.password)
