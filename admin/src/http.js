@@ -1,6 +1,6 @@
 import axios from 'axios'
-import Vue from 'vue'
-import router from './router'
+// import Vue from 'vue'
+// import router from './router'
 
 const http = axios.create({
     baseURL: process.env.VUE_APP_API_URL || '/admin/api',  
@@ -16,22 +16,22 @@ http.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
-http.interceptors.response.use(res => {
-    return res
-  }, err => {
-      console.log(err.response.data.message)
-    if (err.response.data.message) {
-      Vue.prototype.$message({
-        type: 'error',
-        message: err.response.data.message
-      })
+// http.interceptors.response.use(res => {
+//     return res
+//   }, err => {
+//       console.log(err.response.data.message)
+//     if (err.response.data.message) {
+//       Vue.prototype.$message({
+//         type: 'error',
+//         message: err.response.data.message
+//       })
       
-      if (err.response.status === 401) {
-        router.push('/login')
-      }
-    }
+//       if (err.response.status === 401) {
+//         router.push('/login')
+//       }
+//     }
     
-    return Promise.reject(err)
-  })
+//     return Promise.reject(err)
+//   })
 
 export default http;
