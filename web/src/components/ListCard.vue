@@ -3,7 +3,7 @@
       <div class="card-body pt-3">
         <div class="nav jc-between">
             <div class="nav-item" v-for="(category,i) in categories" :key="i" :class="{active: active === i}" @click="$refs.list.$swiper.slideTo(i)">
-                <router-link class="nav-link" tag="div" to="/"  >{{category.name}}</router-link>
+                <router-link class="nav-link" tag="div" :to="`/${routes}`"  >{{category.name}}</router-link>
             </div>
         </div>
       </div>
@@ -35,6 +35,7 @@ export default {
     props:{
         title:{type:String,required:true},
         icon:{type:String,required:true},
+        routes:{type:String,required:true},
         categories:{
             type:Array,
             required: true

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="topbar bg-primarydark py-2 px-4 d-flex ai-center">
-        <img src="../assets/logo.png" style="width:auto" height="30">
+    <div class="topbar bg-primarydark py-2 px-2 d-flex ai-center">
+        <img src="../assets/logo.png" class="logo" style="width:auto" height="30">
         <div class="px-2">
             <div class="text-white fs-xl mt-2" style="font-weight:bold">玩咖</div>
             <div></div>
@@ -16,7 +16,7 @@
                 <router-link class="nav-link" tag="div" to="/game">游戏</router-link>
             </div>
             <div class="nav-item" :class="{active: active === 2}" @click="active = 2">
-                <router-link class="nav-link" tag="div" to="/">硬件</router-link>
+                <router-link class="nav-link" tag="div" to="/hardware">硬件</router-link>
             </div>
 
         </div>
@@ -39,8 +39,12 @@ export default {
 .topbar{
     position: fixed;
     width: 100%;
+    z-index: 999999;
 }
 .main{
     padding-top: 55px;
+}
+.logo{
+    border-radius: 50%;
 }
 </style>

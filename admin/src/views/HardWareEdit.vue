@@ -14,6 +14,9 @@
         <el-form-item label="名称">
             <el-input v-model="model.name"></el-input>
         </el-form-item>
+        <el-form-item label="介绍">
+            <el-input type="textarea" rows="8" v-model="model.content"></el-input>
+        </el-form-item>
         <el-form-item label="图片">
             <el-upload
             class="avatar-uploader"

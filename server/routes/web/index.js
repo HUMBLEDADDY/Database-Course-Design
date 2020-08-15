@@ -1,4 +1,5 @@
 const Article = require('../../models/Article')
+const Hardware = require('../../models/Hardware')
 
 
 module.exports = app => {
@@ -27,9 +28,6 @@ module.exports = app => {
                 }
             }
         ])
-
-
-
         cats.map(cat => {
             cat.newsList.map(news =>{
                 news.category = cat.name
@@ -45,13 +43,48 @@ module.exports = app => {
         res.send(data)
     })
 
+    router.get('/hardwares/list',async(req,res)=>{
+        const parent = await Category.findOne({
+            name: '硬件'
+        })
+        const cats = await Category.aggregate([
+            {$match:{parent:parent._id}},
+            {
+                $lookup:{
+                from:'hardwares',
+                localField: '_id',
+                foreignField: 'category',
+                as: 'newsList'
+                }//类似于关系型数据库的join
+            },
+            {
+                $addFields:{
+                    newsList:{$slice:['$newsList',15]}
+                }
+            }
+        ])
+        cats.map(cat => {
+            cat.newsList.map(news =>{
+                news.category = cat.name
+                return news
+            })
+            return cat
+        })
+        res.send(cats)
+    })
+
     router.get('/articles/:id',async(req,res)=>{
         const data = await Article.findById(req.params.id)
         res.send(data)
     })
 
     router.get('/games/:id',async(req,res)=>{
-        const data = await Article.findById(req.params.id)
+        const data = await Game.findById(req.params.id)
+        res.send(data)
+    })
+
+    router.get('/hardwares/:id',async(req,res)=>{
+        const data = await Hardware.findById(req.params.id)
         res.send(data)
     })
     app.use('/web/api',router)

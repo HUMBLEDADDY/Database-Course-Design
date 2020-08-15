@@ -30,7 +30,7 @@ module.exports = app =>{
         if(req.Model.modelName === 'Article'){
             querryOptions.populate = 'category'
         }
-        if(req.Model.modelName === 'HardWare'){
+        if(req.Model.modelName === 'Hardware'){
             querryOptions.populate = 'category'
         }
         const games = await req.Model.find().setOptions(querryOptions)

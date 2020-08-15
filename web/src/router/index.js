@@ -3,7 +3,10 @@ import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Home from '../views/Home.vue'
 import Article from '../views/Article.vue'
+import Gamescontent from '../views/Gamescontent.vue'
 import Game from '../views/Game.vue'
+import Hardware from '../views/Hardware.vue'
+import Hardwarecontent from '../views/Hardwarecontent.vue'
 
 Vue.use(VueRouter)
 
@@ -15,7 +18,10 @@ Vue.use(VueRouter)
     children:[
       {path:'/',name:'home',component:Home},
       {path:'/game',name:'game',component:Game},
-      {path:'/articles/:id',name:'article',component:Article,props:true}
+      {path:'/hardware',name:'hardware',component:Hardware},
+      {path:'/articles/:id',name:'article',component:Article,props:true},
+      {path:'/games/:id',name:'games',component:Gamescontent,props:true},
+      {path:'/hardwares/:id',name:'hardware',component:Hardwarecontent,props:true}
     ]
   },
   {

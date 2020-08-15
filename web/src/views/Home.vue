@@ -1,7 +1,7 @@
 
 <template>
   <div class="home">
-    <M-listcard title="新闻资讯" icon="cc-menu-circle" :categories="newsCats">
+    <M-listcard title="新闻资讯" routes="" icon="cc-menu-circle" :categories="newsCats">
       <template #items="{category}">
         <router-link tag="div" :to="`/articles/${news._id}`" class="py-2 fs-lg d-flex" v-for="(news,i) in category.newsList"::key="i">
           <span class="text-info">[{{news.category}}]</span>
