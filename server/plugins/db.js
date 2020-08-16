@@ -5,5 +5,6 @@ module.exports = app =>{
         useUnifiedTopology:true
     })
 
-    require('require-all')(__dirname + '/../models')
+    const Category = require('../models/Category')
+    const Game = require('../models/Game')
 }
