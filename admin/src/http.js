@@ -3,7 +3,7 @@ import Vue from 'vue'
 import router from './router'
 
 const http = axios.create({
-    baseURL: process.env.VUE_APP_API_URL || '/admin/api',  
+    baseURL: process.env.NODE_ENV || '/admin/api',  
 })
 
 http.interceptors.request.use(function (config) {
