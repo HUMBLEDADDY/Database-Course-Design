@@ -74,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
   .title{
-    font-size: 1.5rem;
+    font-size: 1.2308rem;
   }
     .priceandscore{
         height: 3rem;
