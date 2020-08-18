@@ -65,7 +65,7 @@ module.exports = app =>{
         assert(isValid, 422, '密码错误')
 
         const token = jwt.sign({ id: user._id }, app.get('secret'))
-        res.send( "35434")
+        res.send({ token })
       })
     
       app.use(async (err, req, res, next) => {
