@@ -56,21 +56,23 @@ module.exports = app =>{
     app.post('/admin/api/login', async(req,res)=>{
 
         const{username,password} = req.body
-
-        const user = await AdminUser.findOne({ username }).select('+password')
-        if(!user){
-            return res.status(422).send({
-                message:'用户不存在'
-            })
-        }
-        const isValid = require('bcryptjs').compareSync(password, user.password)
-        if(!isValid){
-            return res.status(422).send({
-                message:'密码错误'
-            })
-        }
-        const token = jwt.sign({ id: user._id }, app.get('secret'))
-        res.send({ token })
+        res.send({
+            message:"done"
+        })
+        // const user = await AdminUser.findOne({ username }).select('+password')
+        // if(!user){
+        //     return res.status(422).send({
+        //         message:'用户不存在'
+        //     })
+        // }
+        // const isValid = require('bcryptjs').compareSync(password, user.password)
+        // if(!isValid){
+        //     return res.status(422).send({
+        //         message:'密码错误'
+        //     })
+        // }
+        // const token = jwt.sign({ id: user._id }, app.get('secret'))
+        // res.send({ token })
       })
     
       app.use(async (err, req, res, next) => {
