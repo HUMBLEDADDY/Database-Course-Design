@@ -1,5 +1,3 @@
-const AdminUser = require('../../models/AdminUser')
-
 module.exports = app =>{
     const assert = require('http-assert')
     const express = require('express')
@@ -60,10 +58,17 @@ module.exports = app =>{
         const{username,password} = req.body
 
         const user = await AdminUser.findOne({ username }).select('+password')
-        assert(user, 422, '用户不存在')
+        if(!user){
+            return res.status(422).send({
+                message:'用户不存在'
+            })
+        }
         const isValid = require('bcryptjs').compareSync(password, user.password)
-        assert(isValid, 422, '密码错误')
-
+        if(!isValid){
+            return res.status(422).send({
+                message:'密码错误'
+            })
+        }
         const token = jwt.sign({ id: user._id }, app.get('secret'))
         res.send({ token })
       })
