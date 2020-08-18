@@ -6,7 +6,7 @@
       <span class="flex-1 text-primarydark title text-ellipsis" style="font-weight:bold;">{{modle.name}}</span>
     </router-link>
   </div>
-    <img :src="modle.icon" style="height:15rem">
+    <img :src="modle.icon">
     <div class="priceandscore d-flex mb-1">
         <span class="text-white price">￥<span class="theprice">{{modle.price}}</span></span>
         <span class="text-white score">{{modle.score}}</span>

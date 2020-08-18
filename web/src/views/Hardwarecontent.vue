@@ -6,7 +6,7 @@
       <span class="flex-1 text-primarydark title text-ellipsis" style="font-weight:bold;">{{modle.name}}</span>
     </router-link>
   </div>
-    <img :src="modle.icon" style="height:15rem">
+    <img :src="modle.icon">
     <div class="bg-white">
         <div class="text-dark jj pl-3  pt-3 pb-2">产品简介</div>
         <div class="text-dark content  px-3 pb-3">{{modle.content}}</div>
