@@ -43,13 +43,13 @@ module.exports = app =>{
 
     const resourceMiddleware = require('../../middleware/resource')
 
-    app.use('/admin/api/rest/:resource',resourceMiddleware(),router)
+    app.use('/admin/api/rest/:resource',authMiddleware(),resourceMiddleware(),router)
 
     const multer = require('multer')
     const upload = multer({dest: __dirname + '/../../uploads'})
-    app.post('/admin/api/upload',upload.single('file'), async(req,res)=>{
+    app.post('/admin/api/upload',authMiddleware(),upload.single('file'), async(req,res)=>{
         const file = req.file
-        file.url = `http://localhost:3000/uploads/${file.filename}`
+        file.url = `http://http://121.89.208.121//uploads/${file.filename}`
         res.send(file)
     })
 
