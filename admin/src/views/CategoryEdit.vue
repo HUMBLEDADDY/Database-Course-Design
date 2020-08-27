@@ -52,7 +52,13 @@ export default {
         },
         async fetchParents(){
             const res = await this.$http.get(`rest/categories`)
-            this.parents = res.data;
+            var a = new Array()
+            for(let i in res.data){
+                if(!res.data[i].parent){
+                    a.push(res.data[i])
+                }
+            }
+            this.parents = a;
         }
 
     },

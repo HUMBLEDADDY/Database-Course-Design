@@ -69,7 +69,15 @@ export default {
         },
         async fetchCategories(){
             const res = await this.$http.get(`rest/categories`)
-            this.categories = res.data;
+            var a = new Array()
+            for(let i in res.data){
+                if(res.data[i].parent){
+                    if(res.data[i].parent.name == "硬件")
+                        a.push(res.data[i])
+                }
+            }
+            console.log(a)
+            this.categories = a;
         }
     },
     created(){

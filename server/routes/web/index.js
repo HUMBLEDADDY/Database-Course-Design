@@ -17,10 +17,16 @@ module.exports = app => {
             {
                 $lookup:{
                 from:'articles',
-                localField: '_id',
-                foreignField: 'category',
+                let: { indicator_id: '$_id' },
+                pipeline: [
+                    { $match: {
+                      $expr: { $eq: [ '$category', '$$indicator_id' ] }
+                    } },
+                    { $sort: { createdAt: -1 } },
+                  ],
                 as: 'newsList'
                 }//类似于关系型数据库的join
+                
             },
             {
                 $addFields:{
@@ -51,17 +57,17 @@ module.exports = app => {
             {$match:{parent:parent._id}},
             {
                 $lookup:{
-                from:'hardwares',
-                localField: '_id',
-                foreignField: 'category',
-                as: 'newsList'
+                    from:'hardwares',
+                    let: { indicator_id: '$_id' },
+                    pipeline: [
+                        { $match: {
+                          $expr: { $eq: [ '$category', '$$indicator_id' ] }
+                        } },
+                        { $sort: { createdAt: -1 } },
+                      ],
+                    as: 'newsList'
                 }//类似于关系型数据库的join
             },
-            {
-                $addFields:{
-                    newsList:{$slice:['$newsList',15]}
-                }
-            }
         ])
         cats.map(cat => {
             cat.newsList.map(news =>{

@@ -2,8 +2,8 @@
   <div class="page-aticle" v-if="modle">
   <div  class="d-flex py-4 px-2 ai-center border-bottom " style="width:100%">
     <router-link class="d-flex flex-1 ai-center" style="width:80%;padding-left:-20px" tag="div" to="/">
-      <span class="iconfont icon-fanhui text-primary title"></span>
-      <span class="flex-1 text-primary title text-ellipsis" style="font-weight:bold;">{{modle.title}}</span>
+      <span class="iconfont icon-fanhui text-primary title" style="line-height:105%"></span>
+      <span class="flex-1 text-primary title text-ellipsis" style="font-weight:bold;line-height:100%">{{modle.title}}</span>
     </router-link>
     <div class="text-grey" >{{modle.updatedAt | date}}</div>
   </div>
