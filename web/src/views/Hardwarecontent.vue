@@ -1,9 +1,9 @@
 <template>
   <div class="page-hardware" v-if="modle">
-  <div  class="d-flex py-3 px-2 ai-center border-bottom " style="width:100%">
+  <div  class="d-flex py-1 px-2 ai-center border-bottom " style="width:100%">
     <router-link class="d-flex flex-1 ai-center" style="width:80%;padding-left:-20px" tag="div" to="/hardware">
-      <span class="iconfont icon-fanhui text-primarydark title" style="line-height:105%"></span>
-      <span class="flex-1 text-primarydark title text-ellipsis" style="font-weight:bold;line-height:100%">{{modle.name}}</span>
+      <span class="iconfont py-2 icon-fanhui text-primarydark title" style="line-height:105%"></span>
+      <span class="flex-1 py-2 text-primarydark title text-ellipsis" style="font-weight:bold;line-height:100%">{{modle.name}}</span>
     </router-link>
   </div>
     <img :src="modle.icon">
