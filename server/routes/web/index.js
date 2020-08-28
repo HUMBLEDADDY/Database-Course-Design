@@ -22,7 +22,7 @@ module.exports = app => {
                     { $match: {
                       $expr: { $eq: [ '$category', '$$indicator_id' ] }
                     } },
-                    { $sort: { createdAt: -1 } },
+                    { $sort: { updatedAt: -1 } },
                   ],
                 as: 'newsList'
                 }//类似于关系型数据库的join
@@ -63,7 +63,7 @@ module.exports = app => {
                         { $match: {
                           $expr: { $eq: [ '$category', '$$indicator_id' ] }
                         } },
-                        { $sort: { createdAt: -1 } },
+                        { $sort: { updatedAt: -1 } },
                       ],
                     as: 'newsList'
                 }//类似于关系型数据库的join
