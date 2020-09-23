@@ -63,7 +63,7 @@ module.exports = app =>{
                 message:'用户不存在'
             })
         }
-        const isValid = require('bcryptjs').compareSync(password, user.password)
+        const isValid = require('bcryptjs').compareSync(password, user.password)//散列加密
         if(!isValid){
             res.status(422).send({
                 message:'密码错误'
